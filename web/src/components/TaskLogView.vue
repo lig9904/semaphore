@@ -28,9 +28,9 @@
 
       <span class="ml-3 hidden-xs-only task-log-view__status_part">
 
-        Started <span v-if="user">by <b>{{ user.name }}</b></span>
-
-        at <b>{{ item.start | formatDate }}</b>
+        <span v-if="user">{{ $t('taskUiStartedByAt', { user_name: user.name }) }}</span>
+        <span v-else>{{ $t('taskUiStartedAt') }}</span>
+        <b>{{ item.start | formatDate }}</b>
       </span>
 
       <span class="ml-3 hidden-sm-and-down task-log-view__status_part">
@@ -41,13 +41,13 @@
     </div>
 
     <v-tabs class="task-log-view__tabs" right v-model="tab">
-      <v-tab>Log</v-tab>
-      <v-tab>Details</v-tab>
+      <v-tab>{{ $t('taskUiLog') }}</v-tab>
+      <v-tab>{{ $t('taskUiDetails') }}</v-tab>
       <v-tab
         v-if="isPro"
         :disabled="!isTaskStopped"
       >
-        Summary
+        {{ $t('taskUiSummary') }}
       </v-tab>
     </v-tabs>
 

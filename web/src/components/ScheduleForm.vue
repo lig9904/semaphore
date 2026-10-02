@@ -11,8 +11,7 @@
       text
       class="mb-6"
     >
-      Use environment variable <code>SEMAPHORE_SCHEDULE_TIMEZONE</code> or config param
-      <code>schedule.timezone</code> to set timezone for Schedule.
+      <span v-html="$t('scheduleTimezoneHint')"></span>
     </v-alert>
 
     <v-alert
@@ -75,10 +74,10 @@
 
         v-model="runAtInput"
         type="datetime-local"
-        label="Run at"
+        :label="$t('scheduleRunAt')"
         :rules="runAtRules"
         :disabled="formSaving"
-        :suffix="timezone + ' time'"
+        :suffix="timezone + ' ' + $t('scheduleTimeSuffix')"
         outlined
         dense
       ></v-text-field>
@@ -100,7 +99,7 @@
     <div v-else>
       <v-switch
         v-model="rawCron"
-        label="Show cron format"
+        :label="$t('scheduleShowCronFormat')"
         :disabled="disableRawCron"
       />
 
@@ -112,7 +111,7 @@
         required
         :disabled="formSaving"
         @input="refreshCheckboxes()"
-        :suffix="timezone + ' time'"
+        :suffix="timezone + ' ' + $t('scheduleTimeSuffix')"
         outlined
         :error="cronFormatError != null"
         :error-messages="cronFormatError"
@@ -125,8 +124,8 @@
           :label="$t('Timing')"
           :items="TIMINGS"
           item-value="id"
-          item-text="title"
-          :rules="[v => !!v || $t('template_required')]"
+          :item-text="(option) => $t(option.titleKey)"
+          :rules="[v => !!v || $t('timingRequired')]"
           required
           :disabled="formSaving"
           @change="refreshCron()"
@@ -136,14 +135,14 @@
         />
 
         <div v-if="['yearly'].includes(timing)">
-          <div class="mt-4">Months</div>
+          <div class="mt-4">{{ $t('scheduleMonths') }}</div>
           <div class="d-flex flex-wrap">
             <v-checkbox
               class="mr-2 mt-0 ScheduleCheckbox"
               v-for="m in MONTHS"
               :key="m.id"
               :value="m.id"
-              :label="m.title"
+              :label="$t(m.titleKey)"
               v-model="months"
               color="white"
               :class="{'ScheduleCheckbox--active': months.includes(m.id)}"
@@ -153,13 +152,13 @@
         </div>
 
         <div v-if="['weekly'].includes(timing)">
-          <div class="mt-4">Weekdays</div>
+          <div class="mt-4">{{ $t('scheduleWeekdays') }}</div>
           <div class="d-flex flex-wrap">
             <v-checkbox
               class="mr-2 mt-0 ScheduleCheckbox"
               v-for="d in WEEKDAYS" :key="d.id"
               :value="d.id"
-              :label="d.title"
+              :label="$t(d.titleKey)"
               v-model="weekdays"
               color="white"
               :class="{'ScheduleCheckbox--active': weekdays.includes(d.id)}"
@@ -169,7 +168,7 @@
         </div>
 
         <div v-if="['yearly', 'monthly'].includes(timing)">
-          <div class="mt-4">Days</div>
+          <div class="mt-4">{{ $t('scheduleDays') }}</div>
           <div class="d-flex flex-wrap">
             <v-checkbox
               class="mr-2 mt-0 ScheduleCheckbox"
@@ -187,8 +186,8 @@
 
         <div v-if="['yearly', 'monthly', 'weekly', 'daily'].includes(timing)">
           <div class="mt-4 d-flex justify-space-between">
-            <span>Hours</span>
-            <b style="color: red;">{{ timezone + ' time' }}</b>
+            <span>{{ $t('scheduleHours') }}</span>
+            <b style="color: red;">{{ timezone + ' ' + $t('scheduleTimeSuffix') }}</b>
           </div>
           <div class="d-flex flex-wrap">
             <v-checkbox
@@ -206,7 +205,7 @@
         </div>
 
         <div>
-          <div class="mt-4">Minutes</div>
+          <div class="mt-4">{{ $t('scheduleMinutes') }}</div>
           <div class="d-flex flex-wrap">
             <v-checkbox
               class="mr-2 mt-0 ScheduleCheckbox"
@@ -229,16 +228,16 @@
       :class="{'mt-8': !rawCron, 'mt-3': rawCron}"
       style="color: limegreen; font-weight: bold;"
     >
-      Next run time
+      {{ $t('scheduleNextRunTime') }}
     </div>
 
     <v-simple-table class="TaskDetails__table text-sub mb-2">
       <template v-slot:default>
         <thead>
         <tr>
-          <th>Time Zone</th>
-          <th>Date</th>
-          <th>Time</th>
+          <th>{{ $t('scheduleTimeZone') }}</th>
+          <th>{{ $t('scheduleDate') }}</th>
+          <th>{{ $t('scheduleTime') }}</th>
         </tr>
         </thead>
         <tbody>
@@ -325,80 +324,80 @@ dayjs.extend(customParseFormat);
 
 const MONTHS = [{
   id: 1,
-  title: 'Jan',
+  titleKey: 'scheduleMonthJan',
 }, {
   id: 2,
-  title: 'Feb',
+  titleKey: 'scheduleMonthFeb',
 }, {
   id: 3,
-  title: 'March',
+  titleKey: 'scheduleMonthMar',
 }, {
   id: 4,
-  title: 'April',
+  titleKey: 'scheduleMonthApr',
 }, {
   id: 5,
-  title: 'May',
+  titleKey: 'scheduleMonthMay',
 }, {
   id: 6,
-  title: 'June',
+  titleKey: 'scheduleMonthJun',
 }, {
   id: 7,
-  title: 'July',
+  titleKey: 'scheduleMonthJul',
 }, {
   id: 8,
-  title: 'August',
+  titleKey: 'scheduleMonthAug',
 }, {
   id: 9,
-  title: 'September',
+  titleKey: 'scheduleMonthSep',
 }, {
   id: 10,
-  title: 'October',
+  titleKey: 'scheduleMonthOct',
 }, {
   id: 11,
-  title: 'November',
+  titleKey: 'scheduleMonthNov',
 }, {
   id: 12,
-  title: 'December',
+  titleKey: 'scheduleMonthDec',
 }];
 
 const TIMINGS = [{
   id: 'yearly',
-  title: 'Yearly',
+  titleKey: 'scheduleYearly',
 }, {
   id: 'monthly',
-  title: 'Monthly',
+  titleKey: 'scheduleMonthly',
 }, {
   id: 'weekly',
-  title: 'Weekly',
+  titleKey: 'scheduleWeekly',
 }, {
   id: 'daily',
-  title: 'Daily',
+  titleKey: 'scheduleDaily',
 }, {
   id: 'hourly',
-  title: 'Hourly',
+  titleKey: 'scheduleHourly',
 }];
 
 const WEEKDAYS = [{
   id: 0,
-  title: 'Sunday',
+  titleKey: 'scheduleSunday',
 }, {
   id: 1,
-  title: 'Monday',
+  titleKey: 'scheduleMonday',
 }, {
   id: 2,
-  title: 'Tuesday',
+  titleKey: 'scheduleTuesday',
 }, {
   id: 3,
-  title: 'Wednesday',
+  titleKey: 'scheduleWednesday',
 }, {
   id: 4,
-  title: 'Thursday',
+  titleKey: 'scheduleThursday',
 }, {
   id: 5,
-  title: 'Friday',
+  titleKey: 'scheduleFriday',
 }, {
   id: 6,
-  title: 'Saturday',
+  titleKey: 'scheduleSaturday',
 }];
 
 const MINUTES = [
@@ -520,7 +519,7 @@ export default {
 
   computed: {
     localTimezone() {
-      return 'Local';
+      return this.$t('scheduleLocal');
     },
 
     runAtRules() {
@@ -529,7 +528,7 @@ export default {
       }
 
       return [
-        (v) => !!v || 'Run time is required',
+        (v) => !!v || this.$t('scheduleRunTimeRequired'),
       ];
     },
 
@@ -734,7 +733,7 @@ export default {
           : null;
 
         if (!parsed || !parsed.isValid()) {
-          this.formError = 'Please provide a valid run time for the run_at schedule.';
+          this.formError = this.$t('scheduleInvalidRunAt');
           throw new Error(this.formError);
         }
 

@@ -92,15 +92,15 @@
             />
 
             <h2 v-if="screen === 'verification'" class="text-center pt-4 pb-6">
-              Two-step verification
+              {{ $t('twoStepVerification') }}
             </h2>
 
             <h2 v-else-if="screen === 'recovery'" class="text-center pt-4 pb-6">
-              Account recovery
+              {{ $t('accountRecovery') }}
             </h2>
 
             <h2 v-else class="text-center pt-4 pb-6">
-              Enter to your account
+              {{ $t('signInToAccount') }}
             </h2>
 
             <v-alert
@@ -113,12 +113,11 @@
             <div v-if="screen === 'verification'">
 
               <div  v-if="verificationMethod === 'totp'" class="text-center mb-4">
-                Open the two-step verification app on your mobile device to
-                get your verification code.
+                {{ $t('twoStepAppHint') }}
               </div>
 
               <div v-else-if="isPortal && verificationMethod === 'email'" class="text-center mb-4">
-                Check your email for the verification code we just sent you.
+                {{ $t('emailCodeHint') }}
               </div>
 
               <v-otp-input
@@ -159,7 +158,7 @@
 
             <div v-else-if="screen === 'recovery'">
               <div class="text-center mb-2">
-                Use your recovery code to regain access to your account.
+                {{ $t('recoveryCodeHint') }}
               </div>
 
               <v-text-field
@@ -178,7 +177,7 @@
                   color="primary"
                   @click="recovery()"
                 >
-                  Send
+                  {{ $t('send') }}
                 </v-btn>
               </div>
 
@@ -266,7 +265,7 @@
               <div
                 class="auth__divider"
                 v-if="(loginWithPassword || isPortal) && oidcProviders.length > 0"
-              >or</div>
+              >{{ $t('or') }}</div>
 
               <v-btn
                 large
@@ -406,7 +405,7 @@ export default {
         }));
         EventBus.$emit('i-snackbar', {
           color: 'success',
-          text: 'Verification email sent successfully.',
+          text: this.$t('verificationEmailSentSuccess'),
         });
       } catch (e) {
         EventBus.$emit('i-snackbar', {

@@ -81,7 +81,7 @@
         class="pt-0 mb-2"
         style="margin-top: -5px"
         v-model="item.params.insecure_tls"
-        label="Skip TLS certificate verification (insecure)"
+        :label="$t('uiSkipTlsVerification')"
         :disabled="formSaving"
       />
 

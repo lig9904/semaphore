@@ -46,8 +46,8 @@
     </v-row>
 
     <v-tabs grow v-model="tab">
-      <v-tab key="variables">Variables</v-tab>
-      <v-tab key="secrets">Secrets</v-tab>
+      <v-tab key="variables">{{ $t('uiVariables') }}</v-tab>
+      <v-tab key="secrets">{{ $t('uiSecrets') }}</v-tab>
     </v-tabs>
 
     <v-divider style="margin-top: -1px" class="mb-7" />
@@ -225,7 +225,7 @@
             <v-icon small class="mr-1">{{ getIcon(secretStorage.type) }}</v-icon>
             {{ secretStorage.name }}
           </div>
-          <pre>Source path pattern: <b>{{ item.secret_storage_key_prefix }}*</b></pre>
+          <pre>{{ $t('uiSourcePathPattern') }} <b>{{ item.secret_storage_key_prefix }}*</b></pre>
 
           <div class="d-flex items-center justify-space-between mt-2">
             <v-checkbox
@@ -246,7 +246,7 @@
                 v-if="item.sync_enabled"
               >
                 <v-icon left>mdi-cog-sync</v-icon>
-                Sync paths
+                {{ $t('uiSyncPaths') }}
                 <v-chip
                   class="ml-2"
                   outlined
@@ -263,7 +263,7 @@
 
         <v-dialog v-model="syncSettingsDialog" max-width="500" persistent>
           <v-card>
-            <v-card-title>Sync paths</v-card-title>
+            <v-card-title>{{ $t('uiSyncPaths') }}</v-card-title>
             <v-card-text class="pt-4 pb-0">
               <v-text-field
                 style="width: 140px"

@@ -85,7 +85,7 @@
 
       <template v-slot:item.expires_at="{ item }">
         <span v-if="item.expires_at">{{ item.expires_at | formatDate }}</span>
-        <span v-else class="text--disabled">{{ $t('Never') }}</span>
+        <span v-else class="text--disabled">{{ $t('uiNeverExpires') }}</span>
       </template>
 
       <template v-slot:item.expired="{ item }">
@@ -232,7 +232,7 @@ export default {
           value: 'created',
         },
         {
-          text: this.$i18n.t('Expires'),
+          text: this.$i18n.t('uiExpirationTime'),
           value: 'expires_at',
         },
         {

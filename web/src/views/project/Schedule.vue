@@ -22,7 +22,7 @@
     </EditDialog>
 
     <ObjectRefsDialog
-      object-title="schedule"
+      :object-title="$t('schedule')"
       :object-refs="itemRefs"
       :project-id="projectId"
       v-model="itemRefsDialog"
@@ -62,7 +62,7 @@
             <v-list-item-icon>
               <v-icon>mdi-calendar-sync</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Cron</v-list-item-title>
+            <v-list-item-title>{{ $t('Cron') }}</v-list-item-title>
           </v-list-item>
           <v-list-item
             link
@@ -71,7 +71,7 @@
             <v-list-item-icon>
               <v-icon>mdi-clock-time-eight-outline</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Run once</v-list-item-title>
+            <v-list-item-title>{{ $t('scheduleRunOnce') }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>

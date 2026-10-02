@@ -59,8 +59,8 @@
           <h2 class="mt-8 mb-4">{{ $t('howToRegister') }}</h2>
 
           <v-tabs v-model="registerTab" :show-arrows="false">
-            <v-tab key="env">Env Vars</v-tab>
-            <v-tab key="config">Config file</v-tab>
+            <v-tab key="env">{{ $t('uiEnvVars') }}</v-tab>
+            <v-tab key="config">{{ $t('uiConfigFile') }}</v-tab>
             <v-tab key="docker">Docker</v-tab>
           </v-tabs>
 
@@ -68,7 +68,7 @@
 
           <v-tabs-items v-model="registerTab">
             <v-tab-item key="env">
-              <div class="mt-3">Register and start the runner:</div>
+              <div class="mt-3">{{ $t('uiRegisterRunner') }}</div>
               <div style="position: relative">
                 <pre
                   class="pa-2"

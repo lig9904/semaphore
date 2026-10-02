@@ -7,17 +7,17 @@
           :color="$vuetify.theme.dark ? '#212121' : 'white'"
           style="background: #8585850f"
         >
-          <v-card-title>Template info</v-card-title>
+          <v-card-title>{{ $t('taskUiTemplateInfo') }}</v-card-title>
           <v-card-text>
             <v-simple-table class="TaskDetails__table">
               <template v-slot:default>
                 <tbody>
                 <tr>
-                  <td><b>App</b></td>
+                  <td><b>{{ $t('taskUiApp') }}</b></td>
                   <td>{{ getAppTitle(template.app) }}</td>
                 </tr>
                 <tr>
-                  <td><b>Template</b></td>
+                  <td><b>{{ $t('template') }}</b></td>
                   <td>
                     <RouterLink :to="`/project/${projectId}/templates/${template.id}`">
                       {{ template.name }}
@@ -37,18 +37,18 @@
           :color="$vuetify.theme.dark ? '#212121' : 'white'"
           style="background: #8585850f"
         >
-          <v-card-title>Commit info</v-card-title>
+          <v-card-title>{{ $t('taskUiCommitInfo') }}</v-card-title>
 
           <v-card-text>
             <v-simple-table class="TaskDetails__table">
               <template v-slot:default>
                 <tbody>
                 <tr>
-                  <td><b>Message</b></td>
+                  <td><b>{{ $t('taskUiMessage') }}</b></td>
                   <td>{{ item.commit_message }}</td>
                 </tr>
                 <tr>
-                  <td><b>Hash</b></td>
+                  <td><b>{{ $t('taskUiHash') }}</b></td>
                   <td>{{ item.commit_hash }}</td>
                 </tr>
                 </tbody>
@@ -66,13 +66,13 @@
           style="background: #8585850f"
           class="mb-5"
         >
-          <v-card-title>Running info</v-card-title>
+          <v-card-title>{{ $t('taskUiRunningInfo') }}</v-card-title>
           <v-card-text>
             <v-simple-table class="pa-0 TaskDetails__table">
               <template v-slot:default>
                 <tbody>
                 <tr>
-                  <td><b>Message</b></td>
+                  <td><b>{{ $t('taskUiMessage') }}</b></td>
                   <td>{{ item.message || '—' }}</td>
                 </tr>
                 <tr v-if="item.user_id != null">
@@ -104,7 +104,7 @@
                   <td>{{ [item.start, item.end] | formatMilliseconds }}</td>
                 </tr>
                 <tr v-if="item.used_runner_name">
-                  <td><b>Runner</b></td>
+                  <td><b>{{ $t('taskUiRunner') }}</b></td>
                   <td>{{ item.used_runner_name }}</td>
                 </tr>
                 </tbody>
@@ -120,45 +120,45 @@
           style="background: #8585850f"
           class="mb-5"
         >
-          <v-card-title>Task parameters</v-card-title>
+          <v-card-title>{{ $t('taskUiParameters') }}</v-card-title>
           <v-card-text>
             <v-simple-table class="pa-0 TaskDetails__table">
               <template v-slot:default>
                 <tbody>
                 <tr>
-                  <td><b>Branch</b></td>
+                  <td><b>{{ $t('taskUiBranch') }}</b></td>
                   <td>
                     {{ item.get_branch || '—' }}
                   </td>
                 </tr>
                 <tr>
-                  <td><b>Limit</b></td>
+                  <td><b>{{ $t('limit') }}</b></td>
                   <td>
                     <span v-if="Array.isArray(item.params.limit) && item.params.limit.length > 0">
                       {{ item.params.limit.join(', ') }}</span>
-                    <span v-else>'No'</span>
+                    <span v-else>{{ $t('taskUiNoLimit') }}</span>
                   </td>
                 </tr>
                 <tr>
-                  <td><b>Debug</b></td>
+                  <td><b>{{ $t('debug') }}</b></td>
                   <td>
-                    {{ item.params.debug ? 'Yes' : 'No' }}
+                    {{ item.params.debug ? $t('yes') : $t('taskUiNo') }}
                   </td>
                 </tr>
                 <tr>
-                  <td><b>Debug level</b></td>
+                  <td><b>{{ $t('taskUiDebugLevel') }}</b></td>
                   <td>{{ item.params.debug_level || '—' }}</td>
                 </tr>
                 <tr>
-                  <td><b>Diff</b> <code>--diff</code></td>
-                  <td>{{ item.params.diff ? 'Yes' : 'No' }}</td>
+                  <td><b>{{ $t('diff') }}</b> <code>--diff</code></td>
+                  <td>{{ item.params.diff ? $t('yes') : $t('taskUiNo') }}</td>
                 </tr>
                 <tr>
-                  <td><b>Dry run</b> <code>--check</code></td>
-                  <td>{{ item.params.dry_run ? 'Yes' : 'No' }}</td>
+                  <td><b>{{ $t('dryRun') }}</b> <code>--check</code></td>
+                  <td>{{ item.params.dry_run ? $t('yes') : $t('taskUiNo') }}</td>
                 </tr>
                 <tr>
-                  <td><b>Environment</b></td>
+                  <td><b>{{ $t('taskUiEnvironment') }}</b></td>
                   <td>
                     {{ !item.environment || item.environment === '{}' ? '—' : item.environment }}
                   </td>

@@ -95,7 +95,7 @@
             <v-list-item-icon>
               <v-icon>mdi-cogs</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Applications</v-list-item-title>
+            <v-list-item-title>{{ $t('uiApplications') }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>

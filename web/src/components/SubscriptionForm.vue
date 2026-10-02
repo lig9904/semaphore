@@ -8,11 +8,11 @@
 
     <div v-if="showProUser" style="margin-bottom: 30px">
       <v-alert class="mb-3" type="success">
-        <span> Congrats! You are now using a Pro subscription. </span>
+        <span>{{ $t('uiProSubscriptionCongrats') }}</span>
       </v-alert>
 
       <div style="margin: 20px 0; font-size: 16px">
-        Are you want to make your current user <strong>Pro</strong>?
+        {{ $t('uiMakeCurrentUserPro') }}
       </div>
 
       <div>
@@ -22,7 +22,7 @@
           :disabled="formSaving"
           style="width: calc(50% - 5px); margin-right: 10px"
         >
-          No
+          {{ $t('uiNo') }}
         </v-btn>
         <v-btn
           @click="makeProUser"
@@ -30,7 +30,7 @@
           :disabled="formSaving"
           style="width: calc(50% - 5px)"
         >
-          Yes
+          {{ $t('uiYes') }}
         </v-btn>
       </div>
     </div>
@@ -41,7 +41,9 @@
         style="line-height: 1.3; font-weight: bold; color: rgb(0, 188, 0)"
         class="mb-5"
       >
-        You {{ item.plan.startsWith('enterprise_') ? 'Enterprise' : 'PRO' }} subscription is active.
+        {{ $t('uiSubscriptionIsActive', {
+          plan: item.plan.startsWith('enterprise_') ? 'Enterprise' : 'PRO',
+        }) }}
       </div>
 
       <div
@@ -49,12 +51,13 @@
         style="line-height: 1.3; font-weight: bold; color: rgb(188, 0, 0)"
         class="mb-5"
       >
-        You {{ item.plan.startsWith('enterprise_') ? 'Enterprise' : 'PRO' }}
-        subscription has expired.
+        {{ $t('uiSubscriptionHasExpired', {
+          plan: item.plan.startsWith('enterprise_') ? 'Enterprise' : 'PRO',
+        }) }}
       </div>
 
       <div v-else style="line-height: 1.3">
-        Enter your subscription key to unlock advanced features, or get a new one instantly.
+        {{ $t('uiEnterSubscriptionKeyHint') }}
       </div>
 
       <v-textarea
@@ -62,7 +65,7 @@
         rows="4"
         auto-grow
         v-model="item.key"
-        label="Enter your PRO or EE key"
+        :label="$t('uiEnterProKey')"
         :rules="[(v) => !!v || $t('key_required')]"
         required
         :disabled="formSaving || item.managed_by_config"
@@ -89,19 +92,19 @@
             <v-list-item-icon>
               <v-icon>mdi-refresh</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Reload</v-list-item-title>
+            <v-list-item-title>{{ $t('uiReload') }}</v-list-item-title>
           </v-list-item>
           <v-list-item link @click="uploadKeyFile">
             <v-list-item-icon>
               <v-icon>mdi-upload</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Upload</v-list-item-title>
+            <v-list-item-title>{{ $t('uiUpload') }}</v-list-item-title>
           </v-list-item>
           <v-list-item link @click="resetToken">
             <v-list-item-icon>
               <v-icon>mdi-delete</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Reset</v-list-item-title>
+            <v-list-item-title>{{ $t('uiReset') }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -131,7 +134,7 @@
               color="white"
               :size="24"
             ></v-progress-circular>
-            <span v-else>Activate New Key</span>
+            <span v-else>{{ $t('uiActivateNewKey') }}</span>
           </v-btn>
         </v-col>
         <v-col>
@@ -141,7 +144,7 @@
             :disabled="formSaving"
             target="_blank"
             :href="`https://portal.semaphoreui.com/buy_pro?utm_source=app&utm_content=feature_${feature}`"
-            >Buy Pro</v-btn
+            >{{ $t('uiBuyPro') }}</v-btn
           >
         </v-col>
       </v-row>
@@ -156,17 +159,17 @@
         outlined
         :href="`https://portal.semaphoreui.com/start_trial?utm_source=app&utm_content=feature_${feature}`"
       >
-        Get 30-day free trial
+        {{ $t('uiGetFreeTrial') }}
       </v-btn>
     </div>
 
     <v-card v-if="item.plan" class="mb-3" style="background: var(--highlighted-card-bg-color)">
-      <v-card-title>Plan &amp; status</v-card-title>
+      <v-card-title>{{ $t('uiPlanAndStatus') }}</v-card-title>
       <v-card-text class="pb-2">
         <v-list class="py-0 pb-5" style="background: unset" v-if="item.company">
           <v-list-item class="pa-0">
             <v-list-item-content class="py-0">
-              <v-list-item-title>Subscription holder</v-list-item-title>
+              <v-list-item-title>{{ $t('uiSubscriptionHolder') }}</v-list-item-title>
               <v-list-item-subtitle>{{ item.company }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -177,19 +180,19 @@
             <v-list class="py-0" style="background: unset">
               <v-list-item class="pa-0">
                 <v-list-item-content>
-                  <v-list-item-title>Plan</v-list-item-title>
+                  <v-list-item-title>{{ $t('uiPlan') }}</v-list-item-title>
                   <v-list-item-subtitle>{{ item.plan }}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
               <v-list-item class="pa-0">
                 <v-list-item-content>
-                  <v-list-item-title>Expires at</v-list-item-title>
+                  <v-list-item-title>{{ $t('uiExpiresAt') }}</v-list-item-title>
                   <v-list-item-subtitle>{{ item.expiresAt }}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
               <v-list-item class="pa-0" v-if="item.nodes">
                 <v-list-item-content>
-                  <v-list-item-title>Nodes</v-list-item-title>
+                  <v-list-item-title>{{ $t('uiNodes') }}</v-list-item-title>
                   <v-list-item-subtitle>
                     {{ item.nodes_used }} / {{ item.nodes }}
                   </v-list-item-subtitle>
@@ -197,7 +200,7 @@
               </v-list-item>
               <v-list-item class="pa-0" v-if="item.runners < 100000">
                 <v-list-item-content>
-                  <v-list-item-title>Project runners</v-list-item-title>
+                  <v-list-item-title>{{ $t('uiProjectRunners') }}</v-list-item-title>
                   <v-list-item-subtitle>
                     {{ item.runners_used }} / {{ item.runners }}
                   </v-list-item-subtitle>
@@ -209,7 +212,7 @@
             <v-list class="py-0" style="background: unset">
               <v-list-item class="pa-0">
                 <v-list-item-content>
-                  <v-list-item-title>Status</v-list-item-title>
+                  <v-list-item-title>{{ $t('uiStatus') }}</v-list-item-title>
                   <v-list-item-subtitle style="display: flex; align-items: center">
                     <div
                       style="
@@ -223,19 +226,21 @@
                         backgroundColor: item.state === 'active' ? '#00bc00' : '#ff0000',
                       }"
                     ></div>
-                    <div>{{ item.state }}</div>
+                    <div>{{ $t(item.state === 'active' ? 'uiSubscriptionActive'
+                      : item.state === 'expired' ? 'uiSubscriptionExpired'
+                        : 'uiSubscriptionUnknown') }}</div>
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
               <v-list-item class="pa-0" v-if="item.users < 100000">
                 <v-list-item-content>
-                  <v-list-item-title>Pro users</v-list-item-title>
+                  <v-list-item-title>{{ $t('uiProUsers') }}</v-list-item-title>
                   <v-list-item-subtitle>{{ item.used }} / {{ item.users }}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
               <v-list-item class="pa-0" v-if="item.terraform_states < 100000">
                 <v-list-item-content>
-                  <v-list-item-title>Terraform backends</v-list-item-title>
+                  <v-list-item-title>{{ $t('uiTerraformBackends') }}</v-list-item-title>
                   <v-list-item-subtitle>
                     {{ item.terraform_states_used }} / {{ item.terraform_states }}
                   </v-list-item-subtitle>
@@ -243,7 +248,7 @@
               </v-list-item>
               <v-list-item class="pa-0" v-if="item.uis">
                 <v-list-item-content>
-                  <v-list-item-title>UIs</v-list-item-title>
+                  <v-list-item-title>{{ $t('uiUis') }}</v-list-item-title>
                   <v-list-item-subtitle>
                     {{ item.uis_used }} / {{ item.uis }}
                   </v-list-item-subtitle>
@@ -257,21 +262,21 @@
           v-if="subscriptionTimeRemainingMs > 0"
           style="margin-top: 20px; font-weight: bold; color: #00bc00"
         >
-          Renews in {{ subscriptionTimeRemainingMs | formatMilliseconds }}
-          <span>(if auto-renew is activated)</span>
+          {{ $t('uiRenewsIn') }} {{ subscriptionTimeRemainingMs | formatMilliseconds }}
+          <span>{{ $t('uiIfAutoRenew') }}</span>
         </div>
       </v-card-text>
     </v-card>
 
     <div v-else class="mb-4 mt-2">
       <div>
-        Need help?
+        {{ $t('uiNeedHelp') }}
         <a
           target="_blank"
           class="LinkHoverable"
           href="https://semaphoreui.com/contact/"
         >
-          Contact support
+          {{ $t('uiContactSupport') }}
           <v-icon small color="primary" style="transform: translateY(-1px)">mdi-open-in-new</v-icon>
         </a>
       </div>

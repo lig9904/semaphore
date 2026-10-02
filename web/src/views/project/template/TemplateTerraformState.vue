@@ -102,7 +102,7 @@
           </v-btn>
         </v-btn-toggle>
 
-        <span v-else>No workspaces.</span>
+        <span v-else>{{ $t('uiNoWorkspaces') }}</span>
 
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
@@ -123,13 +123,13 @@
               <v-list-item-icon>
                 <v-icon>mdi-pencil</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>New workspace</v-list-item-title>
+              <v-list-item-title>{{ $t('uiNewWorkspace') }}</v-list-item-title>
             </v-list-item>
             <v-list-item @click="attachInventoryDialog = true">
               <v-list-item-icon>
                 <v-icon>mdi-connection</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>Attach existing workspace</v-list-item-title>
+              <v-list-item-title>{{ $t('uiAttachExistingWorkspace') }}</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>

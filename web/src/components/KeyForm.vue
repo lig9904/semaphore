@@ -24,13 +24,17 @@
     >
       <v-tabs fixed-tabs v-model="sourceStorageTypeIndex">
         <v-tab :disabled="formSaving || !canEditSecrets || isSynced" style="padding: 0"
-          >Local</v-tab
+          >{{ $t('uiLocal') }}</v-tab
         >
         <v-tab :disabled="formSaving || !canEditSecrets || isSynced" style="padding: 0"
-          >Storage</v-tab
+          >{{ $t('uiStorage') }}</v-tab
         >
-        <v-tab :disabled="formSaving || !canEditSecrets || isSynced" style="padding: 0">Env</v-tab>
-        <v-tab :disabled="formSaving || !canEditSecrets || isSynced" style="padding: 0">File</v-tab>
+        <v-tab :disabled="formSaving || !canEditSecrets || isSynced" style="padding: 0">
+          {{ $t('uiEnv') }}
+        </v-tab>
+        <v-tab :disabled="formSaving || !canEditSecrets || isSynced" style="padding: 0">
+          {{ $t('uiFile') }}
+        </v-tab>
       </v-tabs>
 
       <div

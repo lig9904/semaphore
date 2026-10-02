@@ -42,11 +42,11 @@
       </template>
 
       <template v-slot:item.location="{item}">
-        <div v-if="item.location === 'queue'">Queue</div>
+        <div v-if="item.location === 'queue'">{{ $t('queue') }}</div>
         <div v-else-if="item.runner_id">
-          Runner #{{ item.runner_id }}
+          {{ $t('taskUiRunnerNumber', { id: item.runner_id }) }}
         </div>
-        <div v-else>Local Running</div>
+        <div v-else>{{ $t('taskUiLocalRunning') }}</div>
       </template>
 
       <template v-slot:item.actions="{ item }">

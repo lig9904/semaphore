@@ -21,7 +21,7 @@
         (v) => v == null || v === '' || Math.floor(v) === v || $t('mustBeInteger'),
         (v) => v == null || v === '' || v >= 0 || $t('mustBe0OrGreater'),
       ]"
-      hint="Should be 0 or greater, 0 - unlimited."
+      :hint="$t('uiParallelTasksHint')"
       type="number"
       :step="1"
       outlined
