@@ -2,7 +2,7 @@
   <div v-if="items != null && isAppsLoaded">
     <EditDialog
         v-model="editDialog"
-        save-button-text="Save"
+        :save-button-text="$t('save')"
         :title="$t('Edit App')"
         @save="loadItems()"
     >

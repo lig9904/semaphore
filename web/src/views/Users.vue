@@ -2,7 +2,7 @@
   <div v-if="items != null">
     <EditDialog
       v-model="editDialog"
-      save-button-text="Save"
+      :save-button-text="$t('save')"
       :title="$t('editUser')"
       @save="loadItems()"
       :hide-buttons="hideEditDialogButtons"

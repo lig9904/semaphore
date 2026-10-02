@@ -2,8 +2,8 @@
   <div v-if="items != null">
     <EditDialog
       v-model="editDialog"
-      :save-button-text="itemId === 'new' ? 'Create' : 'Save'"
-      :title="`${itemId === 'new' ? 'New' : 'Edit'} Matcher`"
+      :save-button-text="itemId === 'new' ? $t('create') : $t('save')"
+      :title="$t(itemId === 'new' ? 'newMatcher' : 'editMatcher')"
       :max-width="450"
       :transition="false"
       @save="loadItems"

@@ -70,7 +70,9 @@
           <v-spacer />
 
           <v-btn-toggle v-model="extraVarsEditMode" tile group>
-            <v-btn value="table" small class="mr-0" style="border-radius: 4px"> Table </v-btn>
+            <v-btn value="table" small class="mr-0" style="border-radius: 4px">
+              {{ $t('tableView') }}
+            </v-btn>
             <v-btn value="json" small class="mr-0" style="border-radius: 4px"> JSON </v-btn>
           </v-btn-toggle>
 
@@ -158,7 +160,7 @@
           </v-data-table>
 
           <v-alert color="warning" v-else>
-            Oops! This JSON structure is a little too complex to display as a table.
+            {{ $t('jsonTooComplexForTable') }}
           </v-alert>
         </div>
 

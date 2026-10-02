@@ -3,7 +3,7 @@
     <EditDialog
       v-model="editDialog"
       :save-button-text="$t('save')"
-      :title="$t('editSchedule')"
+      :title="$t(itemId === 'new' ? 'newSchedule' : 'editSchedule')"
       :max-width="500"
       @save="loadItems"
     >

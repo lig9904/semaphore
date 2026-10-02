@@ -47,7 +47,7 @@
     <v-switch
       v-if="itemId === 'new' && !hideDemoSwitch"
       v-model="item.demo"
-      label="Demo"
+      :label="$t('demoProject')"
       style="position: absolute; left: 24px; bottom: 15px"
       hide-details
     />

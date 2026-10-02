@@ -21,7 +21,7 @@
 
     <EditDialog
       v-model="userDialog"
-      save-button-text="Save"
+      :save-button-text="$t('save')"
       :title="$t('editUser')"
       v-if="user"
       event-name="i-user"
@@ -54,7 +54,7 @@
 
     <EditDialog
       v-model="newProjectDialog"
-      save-button-text="Create"
+      :save-button-text="$t('create')"
       :title="$t('newProject')"
       event-name="i-project"
       @close="onNewProjectDialogueClosed()"
@@ -101,7 +101,7 @@
 
     <EditDialog
       v-model="restoreProjectDialog"
-      save-button-text="Restore"
+      :save-button-text="$t('restore')"
       :title="$t('restoreProject')"
       event-name="i-project"
     >
