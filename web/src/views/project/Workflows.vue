@@ -60,7 +60,7 @@
       <template v-slot:item.status="{ item }">
         <div class="mt-2 mb-2 d-flex" v-if="item.last_run != null">
           <v-chip :color="statusColor(item.last_run.status)" small>
-            {{ item.last_run.status }}
+            {{ statusLabel(item.last_run.status) }}
           </v-chip>
         </div>
         <div v-else class="mt-3 mb-2 d-flex" style="color: gray;">{{ $t('notLaunched') }}</div>
@@ -110,7 +110,7 @@
               </router-link>
             </template>
             <template v-slot:item.status="{ item: run }">
-              <v-chip :color="statusColor(run.status)" small>{{ run.status }}</v-chip>
+              <v-chip :color="statusColor(run.status)" small>{{ statusLabel(run.status) }}</v-chip>
             </template>
             <template v-slot:item.version="{ item: run }">
               {{ run.version || '—' }}
@@ -189,6 +189,21 @@ export default {
   },
 
   methods: {
+    statusLabel(status) {
+      const key = {
+        success: 'status_success',
+        approved: 'status_approved',
+        failed: 'status_failed',
+        error: 'status_failed',
+        stopped: 'status_stopped',
+        rejected: 'status_rejected',
+        running: 'status_running',
+        pending: 'status_pending',
+        approval: 'status_approval',
+      }[status];
+      return key ? this.$t(key) : status;
+    },
+
     statusColor(status) {
       switch (status) {
         case 'success':

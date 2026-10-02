@@ -3,7 +3,7 @@
     <EditDialog
       v-model="editDialog"
       :save-button-text="itemId === 'new' ? $t('create') : $t('save')"
-      :title="`${itemId === 'new' ? $t('nnew') : $t('edit')} Repository`"
+      :title="itemId === 'new' ? $t('newRepository') : $t('editRepository')"
       @save="loadItems()"
       :max-width="450"
     >

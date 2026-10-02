@@ -242,11 +242,11 @@ export default {
 
     taskHeaders() {
       return [
-        { text: 'Task', value: 'task_id' },
+        { text: this.$t('task2'), value: 'task_id' },
         { text: this.$t('project'), value: 'project_id' },
-        { text: 'Template', value: 'template_id' },
+        { text: this.$t('template'), value: 'template_id' },
         { text: this.$t('status'), value: 'status' },
-        { text: 'Runner', value: 'runner_id' },
+        { text: this.$t('runners'), value: 'runner_id' },
         { text: this.$t('username'), value: 'username' },
         { text: this.$t('owningNode'), value: 'node_id' },
       ];
@@ -255,7 +255,7 @@ export default {
     aliasHeaders() {
       return [
         { text: this.$t('aliases'), value: 'alias' },
-        { text: 'Task', value: 'task_id' },
+        { text: this.$t('task2'), value: 'task_id' },
       ];
     },
 

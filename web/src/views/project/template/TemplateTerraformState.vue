@@ -33,7 +33,7 @@
       :save-button-text="itemId === 'new' ? $t('create') : $t('save')"
       :icon="getAppIcon(template.app)"
       :icon-color="getAppColor(template.app)"
-      :title="`${$t('nnew')} ${APP_INVENTORY_TITLE[template.app]}`"
+      :title="`${$t('nnew')} ${$t(APP_INVENTORY_TITLE[template.app])}`"
       :max-width="450"
       @save="onNewInventory"
     >

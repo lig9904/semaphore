@@ -17,7 +17,7 @@
     <EditDialog
       v-model="editDialog"
       :save-button-text="itemId === 'new' ? $t('create') : $t('save')"
-      :title="`${itemId === 'new' ? $t('nnew') : $t('edit')} ${itemType} Storage`"
+      :title="`${itemId === 'new' ? $t('nnew') : $t('edit')} ${itemType} ${$t('Storage')}`"
       :max-width="450"
       @save="loadItems()"
     >
@@ -48,7 +48,7 @@
             color="primary"
             v-if="can(USER_PERMISSIONS.manageProjectResources)"
           >
-            New Storage
+            {{ $t('newStorage') }}
             <v-icon>mdi-chevron-down</v-icon>
           </v-btn>
         </template>
@@ -155,7 +155,7 @@
 
     <v-tabs class="pl-4">
       <v-tab key="keys" :to="`/project/${projectId}/keys`" data-testid="keystore-keys">
-        Keys
+        {{ $t('secretStorageKeys') }}
       </v-tab>
 
       <v-tab
@@ -163,7 +163,7 @@
         :to="`/project/${projectId}/secret_storages`"
         data-testid="keystore-storages"
       >
-        Storages
+        {{ $t('secretStorageStorages') }}
       </v-tab>
     </v-tabs>
 

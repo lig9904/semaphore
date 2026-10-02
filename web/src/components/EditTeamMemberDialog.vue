@@ -3,7 +3,7 @@
     v-model="dialog"
     :save-button-text="(
       itemId === 'new'
-        ? (invitesEnabled ? 'Invite' : 'Link')
+        ? (invitesEnabled ? $t('invite') : $t('link'))
         : $t('save')
     )"
     :title="$t('teamMember', { expr: itemId === 'new' ? $t('nnew') : $t('edit') })"

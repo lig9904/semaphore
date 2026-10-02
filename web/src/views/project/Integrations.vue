@@ -47,7 +47,7 @@
     </v-toolbar>
 
     <div class="px-4 py-3">
-      <div class="mb-3 pl-1" v-if="(aliases || []).length === 0">There are no aliases.</div>
+      <div class="mb-3 pl-1" v-if="(aliases || []).length === 0">{{ $t('noAliases') }}</div>
 
       <div v-else v-for="alias of aliases || []" :key="alias.id">
         <code class="mr-2">{{ alias.url }}</code>

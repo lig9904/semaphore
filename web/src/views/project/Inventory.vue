@@ -26,7 +26,7 @@
       :save-button-text="itemId === 'new' ? $t('create') : $t('save')"
       :icon="getAppIcon(itemApp)"
       :icon-color="getAppColor(itemApp)"
-      :title="`${itemId === 'new' ? $t('nnew') : $t('edit')} ${APP_INVENTORY_TITLE[itemApp]}`"
+      :title="`${itemId === 'new' ? $t('nnew') : $t('edit')} ${$t(APP_INVENTORY_TITLE[itemApp])}`"
       :max-width="450"
       @save="loadItems"
     >
@@ -89,7 +89,7 @@
               >{{ getAppIcon(item) }}
               </v-icon>
             </v-list-item-icon>
-            <v-list-item-title>{{ APP_INVENTORY_TITLE[item] }}</v-list-item-title>
+            <v-list-item-title>{{ $t(APP_INVENTORY_TITLE[item]) }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>

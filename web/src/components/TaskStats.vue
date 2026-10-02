@@ -1,7 +1,7 @@
 <template>
   <v-card style="background: rgba(133, 133, 133, 0.06)" class="mx-4">
     <v-card-title>
-      Task Status
+      {{ $t('taskStatus') }}
       <v-spacer />
       <v-select
         hide-details
@@ -40,17 +40,17 @@ export default {
   data() {
     return {
       dateRanges: [{
-        text: 'Past week',
+        text: this.$t('pastWeek'),
         value: 'last_week',
       }, {
-        text: 'Past month',
+        text: this.$t('pastMonth'),
         value: 'last_month',
       }, {
-        text: 'Past year',
+        text: this.$t('pastYear'),
         value: 'last_year',
       }],
       users: [{
-        text: 'All users',
+        text: this.$t('allUsers'),
         value: null,
       }],
       user: null,
@@ -93,7 +93,7 @@ export default {
     await this.refreshData();
 
     this.users = [{
-      text: 'All users',
+      text: this.$t('allUsers'),
       value: null,
     }, ...(await axios({
       method: 'get',

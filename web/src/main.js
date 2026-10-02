@@ -7,6 +7,8 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import durationPlugin from 'dayjs/plugin/duration';
+import 'dayjs/locale/zh-cn';
+import 'dayjs/locale/zh-tw';
 
 import App from './App.vue';
 import router from './router';
@@ -52,6 +54,7 @@ Vue.config.productionTip = false;
 dayjs.extend(relativeTime);
 dayjs.extend(localizedFormat);
 dayjs.extend(durationPlugin);
+dayjs.locale(['zh_cn', 'zh_tw'].includes(i18n.locale) ? i18n.locale.replace('_', '-') : 'en');
 
 Vue.filter('formatDate2', (value) => (value
   ? dayjs(String(value)).format('LL')

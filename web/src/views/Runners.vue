@@ -110,7 +110,7 @@
                 />
               </div>
 
-              <div class="mt-3">Register and start the runner:</div>
+              <div class="mt-3">{{ $t('uiRegisterRunner') }}</div>
               <div style="position: relative">
                 <pre
                   class="pa-2"
@@ -132,7 +132,7 @@
             </v-tab-item>
 
             <v-tab-item key="docker">
-              <div class="mt-3">Register and start the runner:</div>
+              <div class="mt-3">{{ $t('uiRegisterRunner') }}</div>
               <div style="position: relative">
                 <pre
                   class="pa-2"
@@ -205,7 +205,7 @@
                 />
               </div>
 
-              <div class="mt-3">Launching the runner:</div>
+              <div class="mt-3">{{ $t('launchingRunner') }}</div>
               <div>
                 <pre
                   style="
@@ -243,7 +243,7 @@ semaphore runner start --config /path/to/config/file</pre
               </div>
 
               <div class="mt-3">
-                <div>Launching the runner:</div>
+                <div>{{ $t('launchingRunner') }}</div>
                 <pre
                   style="
                     overflow: auto;
@@ -259,7 +259,7 @@ semaphore runner start --config ./config.runner.json</pre
               </div>
             </v-tab-item>
             <v-tab-item key="env">
-              <div class="mt-3">Launching the runner:</div>
+              <div class="mt-3">{{ $t('launchingRunner') }}</div>
               <div style="position: relative">
                 <pre
                   style="
@@ -281,7 +281,7 @@ semaphore runner start --config ./config.runner.json</pre
             </v-tab-item>
 
             <v-tab-item key="docker">
-              <div class="mt-3">Launching the runner:</div>
+              <div class="mt-3">{{ $t('launchingRunner') }}</div>
               <div style="position: relative">
                 <pre
                   style="
@@ -368,11 +368,11 @@ semaphore runner start --config ./config.runner.json</pre
       text
       v-if="!systemInfo.use_remote_runner && projectId == null"
     >
-      Global runners
+      {{ $t('globalRunners') }}
       <a
         target="_blank"
         href="https://docs.semaphoreui.com/administration-guide/runners/#set-up-a-server"
-      >disabled</a
+      >{{ $t('disabled') }}</a
       >.
     </v-alert>
 
@@ -582,9 +582,11 @@ semaphore runner start --config ./config.runner.json</pre
 
             <div v-if="item.cleaning_requested" style="font-size: 12px; line-height: 1.2">
               <span v-if="item.touched < item.cleaning_requested">
-                Already requested {{ item.cleaning_requested | formatDate }}.
+                {{ $t('runnerCleaningRequested') }} {{ item.cleaning_requested | formatDate }}
               </span>
-              <span v-else> Last cleaned {{ item.cleaning_requested | formatDate }}. </span>
+              <span v-else>
+                {{ $t('runnerLastCleaned') }} {{ item.cleaning_requested | formatDate }}
+              </span>
             </div>
           </v-tooltip>
         </div>

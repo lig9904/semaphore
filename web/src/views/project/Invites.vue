@@ -47,7 +47,7 @@
       </template>
 
       <template v-slot:item.role="{ item }">
-        {{ USER_ROLES.find(r => r.slug === item.role).name }}
+        {{ $t(`teamRole_${item.role}`) }}
       </template>
 
       <template v-slot:item.actions="{ item }">

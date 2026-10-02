@@ -97,7 +97,10 @@ export default {
 
   computed: {
     userRoles() {
-      return [...USER_ROLES, ...this.roles];
+      return [
+        ...USER_ROLES.map((role) => ({ ...role, name: this.$t(`teamRole_${role.slug}`) })),
+        ...this.roles,
+      ];
     },
 
     isPro() {

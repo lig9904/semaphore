@@ -2,7 +2,7 @@
   <div>
     <EditDialog
       v-model="passwordDialog"
-      save-button-text="Save"
+      :save-button-text="$t('save')"
       :title="$t('changePassword')"
       v-if="item"
       event-name="i-user"
@@ -20,8 +20,8 @@
     </EditDialog>
 
     <v-tabs v-model="tab">
-      <v-tab key="settings">Settings</v-tab>
-      <v-tab key="2fa" v-if="canChangePassword || authMethods.totp"> Security </v-tab>
+      <v-tab key="settings">{{ $t('settings') }}</v-tab>
+      <v-tab key="2fa" v-if="canChangePassword || authMethods.totp">{{ $t('security') }}</v-tab>
     </v-tabs>
 
     <v-divider class="mb-6" style="margin-top: -1px" />
@@ -61,7 +61,9 @@
             dense
           >
             <template v-slot:append>
-              <v-chip outlined color="green" disabled small style="opacity: 1">private</v-chip>
+              <v-chip outlined color="green" disabled small style="opacity: 1">
+                {{ $t('privateEmail') }}
+              </v-chip>
             </template>
           </v-text-field>
 

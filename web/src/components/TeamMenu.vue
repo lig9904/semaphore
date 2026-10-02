@@ -5,7 +5,7 @@
       :to="`/project/${projectId}/team`"
       data-testid="team-members"
     >
-      Members
+      {{ $t('teamMembers') }}
     </v-tab>
 
     <v-tab
@@ -14,7 +14,7 @@
       :to="`/project/${projectId}/invites`"
       data-testid="team-invites"
     >
-      Invites
+      {{ $t('Invites') }}
     </v-tab>
 
     <v-tab
@@ -22,7 +22,7 @@
       :to="`/project/${projectId}/roles`"
       data-testid="team-roles"
     >
-      Roles
+      {{ $t('Roles') }}
     </v-tab>
   </v-tabs>
 </template>

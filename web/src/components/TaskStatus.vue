@@ -40,6 +40,8 @@ export default {
           return 'mdi-check-circle';
         case TaskStatus.ERROR:
           return 'mdi-information';
+        case TaskStatus.REJECTED:
+          return 'mdi-close-circle';
         case TaskStatus.STOPPING:
           return 'mdi-stop-circle';
         case TaskStatus.STOPPED:
@@ -56,23 +58,25 @@ export default {
     humanizeStatus(status) {
       switch (status) {
         case TaskStatus.WAITING:
-          return 'Waiting';
+          return this.$t('status_waiting');
         case TaskStatus.STARTING:
-          return 'Starting...';
+          return this.$t('status_starting');
         case TaskStatus.RUNNING:
-          return 'Running';
+          return this.$t('status_running');
         case TaskStatus.SUCCESS:
-          return 'Success';
+          return this.$t('status_success');
         case TaskStatus.ERROR:
-          return 'Failed';
+          return this.$t('status_failed');
+        case TaskStatus.REJECTED:
+          return this.$t('status_rejected');
         case TaskStatus.STOPPING:
-          return 'Stopping...';
+          return this.$t('status_stopping');
         case TaskStatus.STOPPED:
-          return 'Stopped';
+          return this.$t('status_stopped');
         case TaskStatus.CONFIRMED:
-          return 'Confirmed';
+          return this.$t('status_confirmed');
         case TaskStatus.WAITING_CONFIRMATION:
-          return 'Waiting confirmation';
+          return this.$t('status_waiting_confirmation');
         default:
           throw new Error(`Unknown task status ${status}`);
       }
@@ -89,6 +93,8 @@ export default {
         case TaskStatus.SUCCESS:
           return 'success';
         case TaskStatus.ERROR:
+          return 'error';
+        case TaskStatus.REJECTED:
           return 'error';
         case TaskStatus.STOPPING:
           return '';
