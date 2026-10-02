@@ -815,6 +815,7 @@ export default {
   editExtractValue: '编辑提取值',
   editMatcher: '编辑匹配器',
   demoProject: '演示项目',
+  subscriptionActivated: '订阅已激活',
   editKey: '编辑密钥',
   editRepository: '编辑仓库',
   invite: '邀请',

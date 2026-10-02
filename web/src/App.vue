@@ -160,7 +160,7 @@
                 <v-list-item-title class="app__project-selector-title">
                   {{ project.name }}
                 </v-list-item-title>
-                <v-list-item-subtitle>{{ userRole.role }}</v-list-item-subtitle>
+                <v-list-item-subtitle>{{ localRole(userRole.role) }}</v-list-item-subtitle>
               </v-list-item-content>
 
               <v-list-item-icon>
@@ -1365,10 +1365,15 @@ export default {
   },
 
   methods: {
+    localRole(role) {
+      const builtInRoles = ['owner', 'manager', 'task_runner', 'guest'];
+      return builtInRoles.includes(role) ? this.$t(`teamRole_${role}`) : role;
+    },
+
     async onSubscriptionKeyUpdates() {
       EventBus.$emit('i-snackbar', {
         color: 'success',
-        text: 'Subscription activated',
+        text: this.$t('subscriptionActivated'),
       });
 
       await this.loadUserInfo();

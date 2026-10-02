@@ -847,6 +847,7 @@ export default {
   editExtractValue: 'Edit Extract Value',
   editMatcher: 'Edit Matcher',
   demoProject: 'Demo',
+  subscriptionActivated: 'Subscription activated',
   editKey: 'Edit Key',
   editRepository: 'Edit Repository',
   invite: 'Invite',
